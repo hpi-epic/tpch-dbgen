@@ -49,6 +49,8 @@ extern distribution np;
 extern distribution vp;
 extern distribution grammar;
 
+extern char** asc_date;
+
 void dbgen_reset_seeds();
 void dbgen_init_scale_factor(float scale_factor);
-
+void dbgen_cleanup();

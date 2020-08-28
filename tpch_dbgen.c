@@ -865,3 +865,82 @@ void dbgen_init_scale_factor(float scale_factor) {
   tdefs[LINE].base *= ORDERS_PER_CUST;
   tdefs[ORDER_LINE].base *= ORDERS_PER_CUST;
 }
+
+/**
+ * Call this after using dbgen to avoid memory leaks
+ */
+void dbgen_cleanup() {
+  free(nations.permute);
+  nations.permute = NULL;
+
+  free(regions.permute);
+  regions.permute = NULL;
+
+  free(o_priority_set.permute);
+  o_priority_set.permute = NULL;
+
+  free(l_instruct_set.permute);
+  l_instruct_set.permute = NULL;
+
+  free(l_smode_set.permute);
+  l_smode_set.permute = NULL;
+
+  free(l_category_set.permute);
+  l_category_set.permute = NULL;
+
+  free(l_rflag_set.permute);
+  l_rflag_set.permute = NULL;
+
+  free(c_mseg_set.permute);
+  c_mseg_set.permute = NULL;
+
+  free(colors.permute);
+  colors.permute = NULL;
+
+  free(p_types_set.permute);
+  p_types_set.permute = NULL;
+
+  free(p_cntr_set.permute);
+  p_cntr_set.permute = NULL;
+
+  free(articles.permute);
+  articles.permute = NULL;
+
+  free(nouns.permute);
+  nouns.permute = NULL;
+
+  free(adjectives.permute);
+  adjectives.permute = NULL;
+
+  free(adverbs.permute);
+  adverbs.permute = NULL;
+
+  free(prepositions.permute);
+  prepositions.permute = NULL;
+
+  free(verbs.permute);
+  verbs.permute = NULL;
+
+  free(terminators.permute);
+  terminators.permute = NULL;
+
+  free(auxillaries.permute);
+  auxillaries.permute = NULL;
+
+  free(np.permute);
+  np.permute = NULL;
+
+  free(vp.permute);
+  vp.permute = NULL;
+
+  free(grammar.permute);
+  grammar.permute = NULL;
+
+  if (asc_date) {
+    for (long long idx = 0; idx < TOTDATE; ++idx) {
+      free(asc_date[idx]);
+    }
+    free(asc_date);
+  }
+  asc_date = NULL;
+}
