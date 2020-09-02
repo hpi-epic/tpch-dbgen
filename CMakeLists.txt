@@ -2,7 +2,9 @@ set(DATABASE ORACLE)
 set(MACHINE LINUX)
 set(WORKLOAD TPCH)
 
-add_library(tpch_dbgen
+add_library(
+    tpch-dbgen
+
     STATIC
     build.c
     config.h
@@ -22,13 +24,16 @@ add_library(tpch_dbgen
     shared.h
 )
 
-target_include_directories(tpch_dbgen
+target_include_directories(
+    tpch-dbgen
+
     PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 target_compile_definitions(
-    tpch_dbgen
+    tpch-dbgen
+
     PUBLIC
     -DDBNAME="dss"
     -D${MACHINE}
@@ -38,16 +43,17 @@ target_compile_definitions(
 )
 
 target_compile_options(
-    tpch_dbgen
+    tpch-dbgen
+
     PRIVATE
     -Wno-unused-result
 )
 
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
   target_compile_options(
-    tpch_dbgen
-    PRIVATE
+    tpch-dbgen
 
+    PRIVATE
     -Wno-string-plus-int
   )
 endif()
